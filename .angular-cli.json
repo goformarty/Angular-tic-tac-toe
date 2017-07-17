@@ -19,6 +19,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "../node-modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node-modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
         "styles.css"
       ],
       "scripts": [],
