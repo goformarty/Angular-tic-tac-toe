@@ -4,10 +4,12 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 // import { AlertModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
+import { CellComponent } from './cell/cell.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CellComponent
   ],
   imports: [
     BrowserModule,
