@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-tile',
+  selector: 'tile',
   templateUrl: './tile.component.html',
   styleUrls: ['./tile.component.css']
 })
 export class TileComponent implements OnInit {
   isX: boolean;
+  textContent: string;
+  playerMarker = ' ';
 
   constructor() { }
 
@@ -14,6 +16,6 @@ export class TileComponent implements OnInit {
   }
 
   onClick() {
-    this.isX = !this.isX;
+    this.textContent = 'O';
   }
 }

@@ -7,11 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent {
   title = 'Tic Tac Toe';
-  marker = 'X';
-
-  playerClicked() {
-    console.log('clicked');
-  }
 
  //  onInit(){
  //    this.startNewGame();
