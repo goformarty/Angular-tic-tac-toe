@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent {
   title = 'Tic Tac Toe';
 
+
  //  onInit(){
  //    this.startNewGame();
  //  }
