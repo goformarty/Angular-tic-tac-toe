@@ -1,21 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'tile',
   templateUrl: './tile.component.html',
   styleUrls: ['./tile.component.css']
 })
-export class TileComponent implements OnInit {
-  isX: boolean;
-  textContent: string;
-  playerMarker = ' ';
+export class TileComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  @Input('likesCount') likesCount: number;
+  @Input('isActive') isActive: boolean;
 
   onClick() {
-    this.textContent = 'O';
+    this.likesCount += (this.isActive) ? -1 : 1;
+    this.isActive = !this.isActive;
   }
+
 }
