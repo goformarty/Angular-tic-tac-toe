@@ -22,18 +22,18 @@ describe('BoardComponent', () => {
     expect(component.isEmpty()).toEqual(true);
   });
 
-  // xit('should return board is not empty', () => {
-  //   const board = new BoardComponent();
-  //   board.placeMark('X', 1);
+  it('should return board is not empty', () => {
+    const board = new BoardComponent();
+    board.placeMark('X', 1);
 
-  //   expect(board.isEmpty()).toEqual(false);
-  // });
+    expect(board.isEmpty()).toEqual(false);
+  });
 
-  // xit('places a mark on the board', () => {
-  //   const board = new BoardComponent();
+it('places a mark on the board', () => {
+    const board = new BoardComponent();
 
-  //   board.placeMark('X', 1);
+    board.placeMark('X', 1);
 
-  //   expect(board.position(1)).toEqual('X');
-  // });
+    expect(board.position(1)).toEqual('X');
+  });
 });
