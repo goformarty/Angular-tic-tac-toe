@@ -23,11 +23,16 @@ describe('GameComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should start with player X', () => {
-    expect(component.currentPlayer()).toEqual('X');
+  it ('should start with no moves', () => {
+    const game = new GameComponent();
+    expect(game.movesCount()).toEqual(0);
   });
 
-  it('should start with player X', () => {
-    expect(component.currentPlayer()).toEqual('X');
-  });
+  // xit('should start with player X', () => {
+  //   expect(component.currentPlayer()).toEqual('X');
+  // });
+
+  // xit('second move is player O', () => {
+  //   expect(component.currentPlayer()).toEqual('O');
+  // });
 });

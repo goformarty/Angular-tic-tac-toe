@@ -10,21 +10,28 @@ export class BoardComponent {
 
   private size = 9;
   private grid: Array<any> = new Array<any>(this.size);
+  movesCount = 0;
+  currentPlayer = 'X';
 
   constructor() { }
 
-  isBoardEmpty(): boolean {
-    for (let i = 0; i < this.size; i++) {
-      if (this.grid[i] !== undefined) {
-        return false;
-      }
-    }
-    return true;
+  addMove() {
+    this.movesCount ++;
   }
 
-  placeMark(mark: string, position: number) {
+  advancePlayer() {
+    this.currentPlayer = this.currentPlayer === 'X' ? 'O' : 'X';
+  }
+
+  isBoardEmpty(): boolean {
+    return (this.movesCount === 0) ? true : false;
+  }
+
+  placeMark(position: number) {
     if (this.isValidMove(position)) {
-      this.grid[(position - 1)] = mark;
+      this.grid[(position - 1)] = this.currentPlayer;
+      this.addMove();
+      this.advancePlayer();
     }
   }
 
