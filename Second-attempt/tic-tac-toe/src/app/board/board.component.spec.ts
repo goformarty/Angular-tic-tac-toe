@@ -39,26 +39,31 @@ describe('BoardComponent', () => {
       board.placeMark(1);
       expect(board.isBoardEmpty()).toEqual(false);
     });
+    it('checks if board if full', () => {
+      const board = new BoardComponent();
+      board.movesCount = 9;
+      expect(board.isBoardFull()).toEqual(true);
+    });
   });
 
   describe('making a move', () => {
     it('places a mark on the board', () => {
       const board = new BoardComponent();
       board.placeMark(1);
-      expect(board.position(1)).toEqual('X');
+      expect(board.returnMark(1)).toEqual('X');
     });
 
     it('does not place a mark when not on the board', () => {
       const board = new BoardComponent();
       board.placeMark(0);
-      expect(board.position(0)).toBeUndefined();
+      expect(board.returnMark(0)).toBeUndefined();
     });
 
     it('does not place a mark when position already taken', () => {
       const board = new BoardComponent();
       board.placeMark(3);
       board.placeMark(3);
-      expect(board.position(3)).toEqual('X');
+      expect(board.returnMark(3)).toEqual('X');
     });
 
   });
@@ -86,6 +91,30 @@ describe('BoardComponent', () => {
       const board = new BoardComponent;
       board.placeMark(1);
       expect(board.currentPlayer).toEqual('O');
+    });
+  });
+
+  describe('game draw', () => {
+    it('determines empty board is not a draw', () => {
+      const board = new BoardComponent();
+      expect(board.isDraw()).toEqual(false);
+    });
+
+    it('determines full & not winning board is a draw', () => {
+      const board = new BoardComponent();
+      board.movesCount = 9;
+      expect(board.isDraw()).toEqual(false);
+    });
+  });
+  describe('game won', () => {
+    it('determines empty board is not a win', () => {
+      const board = new BoardComponent();
+      expect(board.isWon()).toEqual(false);
+    });
+    it('determines top row win', () => {
+      const board = new BoardComponent();
+     board.placeMark(1);
+      expect(board.isWon()).toEqual(false);
     });
   });
 });

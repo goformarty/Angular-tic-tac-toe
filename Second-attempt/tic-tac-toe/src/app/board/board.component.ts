@@ -35,8 +35,23 @@ export class BoardComponent {
     }
   }
 
-  position(boardPosition: number): string {
+  returnMark(boardPosition: number): string {
     return this.grid[(boardPosition - 1)];
+  }
+
+  isDraw(): boolean {
+    return (this.isBoardFull() && this.isWon());
+  }
+
+  isWon(): boolean {
+    if (this.isBoardEmpty) {
+      return false;
+    }
+    return this.checkRows();
+  }
+
+  isBoardFull(): boolean {
+   return (this.movesCount === this.size) ? true : false;
   }
 
   private isValidMove(position: number): boolean {
@@ -49,5 +64,9 @@ export class BoardComponent {
 
   private isValidRange(position: number): boolean {
     return (position >= 1 && position <= 9);
+  }
+
+  private checkRows() {
+    return false;
   }
 }
