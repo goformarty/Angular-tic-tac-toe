@@ -18,62 +18,74 @@ describe('BoardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('creates an empty board', () => {
-    expect(component.isBoardEmpty()).toEqual(true);
+  describe('board construction', () => {
+    it('creates an empty board', () => {
+      expect(component.isBoardEmpty()).toEqual(true);
+    });
+
+    it('starts board with no moves', () => {
+      const board = new BoardComponent();
+      expect(board.movesCount).toEqual(0);
+    });
+
+    it('does not add invalid move to an empty board', () => {
+      const board = new BoardComponent();
+      board.placeMark(0);
+      expect(board.isBoardEmpty()).toEqual(true);
+    });
+
+    it('adds valid move to an empty board', () => {
+      const board = new BoardComponent();
+      board.placeMark(1);
+      expect(board.isBoardEmpty()).toEqual(false);
+    });
   });
 
-  it('should return board is not empty after a move', () => {
-    const board = new BoardComponent();
-    board.placeMark(1);
+  describe('making a move', () => {
+    it('places a mark on the board', () => {
+      const board = new BoardComponent();
+      board.placeMark(1);
+      expect(board.position(1)).toEqual('X');
+    });
 
-    expect(board.isBoardEmpty()).toEqual(false);
+    it('does not place a mark when not on the board', () => {
+      const board = new BoardComponent();
+      board.placeMark(0);
+      expect(board.position(0)).toBeUndefined();
+    });
+
+    it('does not place a mark when position already taken', () => {
+      const board = new BoardComponent();
+      board.placeMark(3);
+      board.placeMark(3);
+      expect(board.position(3)).toEqual('X');
+    });
+
+  });
+  describe('counting moves', () => {
+    it('counts valid moves', () => {
+      const board = new BoardComponent();
+      board.placeMark(1);
+      expect(board.movesCount).toEqual(1);
+    });
+
+    it('does not count invalid moves', () => {
+      const board = new BoardComponent();
+      board.placeMark(-1);
+      expect(board.movesCount).toEqual(0);
+    });
   });
 
-  it('starts with no moves yet', () => {
-    const board = new BoardComponent();
-    expect(board.movesCount).toEqual(0);
+  describe('current player', () => {
+    it('empty board starts with player X', () => {
+      const board = new BoardComponent();
+      expect(board.currentPlayer).toEqual('X');
+    });
+
+    it('changes current player to player O after player X moved', () => {
+      const board = new BoardComponent;
+      board.placeMark(1);
+      expect(board.currentPlayer).toEqual('O');
+    });
   });
-
-  it('places a mark on the board', () => {
-    const board = new BoardComponent();
-
-    board.placeMark(1);
-
-    expect(board.position(1)).toEqual('X');
-  });
-
-  it('does not place a mark when not on the board', () => {
-    const board = new BoardComponent();
-
-    board.placeMark(0);
-
-    expect(board.position(0)).toBeUndefined();
-  });
-
-  it('do not places a mark when position already taken', () => {
-    const board = new BoardComponent();
-
-    board.placeMark(3);
-    board.placeMark(3);
-
-    expect(board.position(3)).toEqual('X');
-  });
-
-  it('counts valid moves', () => {
-    const board = new BoardComponent();
-    board.placeMark(1);
-    expect(board.movesCount).toEqual(1);
-  });
-
-  it('starts with player X', () => {
-    const board = new BoardComponent();
-    expect(board.currentPlayer).toEqual('X');
-  });
-
-  it('changes current player to player O after player X moved', () => {
-    const board = new BoardComponent;
-    board.placeMark(1);
-    expect(board.currentPlayer).toEqual('O');
-  });
-
 });
