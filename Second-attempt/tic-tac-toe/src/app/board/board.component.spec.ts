@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BoardComponent} from './board.component';
+import { BoardComponent } from './board.component';
 
 
 describe('BoardComponent', () => {
@@ -18,22 +18,39 @@ describe('BoardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create empty board', () => {
-    expect(component.isEmpty()).toEqual(true);
+  it('should create the empty board', () => {
+    expect(component.isBoardEmpty()).toEqual(true);
   });
 
-  it('should return board is not empty', () => {
-    const board = new BoardComponent();
-    board.placeMark('X', 1);
-
-    expect(board.isEmpty()).toEqual(false);
-  });
-
-it('places a mark on the board', () => {
+  it('places a mark on the board', () => {
     const board = new BoardComponent();
 
     board.placeMark('X', 1);
 
     expect(board.position(1)).toEqual('X');
+  });
+
+  it('board is not empty after a valid move', () => {
+    const board = new BoardComponent();
+    board.placeMark('X', 1);
+
+    expect(board.isBoardEmpty()).toEqual(false);
+  });
+
+  it('do not places a mark when not on the board', () => {
+    const board = new BoardComponent();
+
+    board.placeMark('X', 0);
+
+    expect(board.position(0)).toBeUndefined();
+  });
+
+  it('do not places a mark when position already taken', () => {
+    const board = new BoardComponent();
+
+    board.placeMark('X', 3);
+    board.placeMark('O', 3);
+
+    expect(board.position(3)).toEqual('X');
   });
 });

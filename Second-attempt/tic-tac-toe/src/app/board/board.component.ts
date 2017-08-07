@@ -8,32 +8,39 @@ import { Component, OnInit } from '@angular/core';
 
 export class BoardComponent {
 
-  size = 9;
+  private size = 9;
   private grid: Array<any> = new Array<any>(this.size);
 
   constructor() { }
 
-  isEmpty(): boolean {
-   const gridClone: any[] = this.grid;
-   for (let i = 0; i < this.size; i++) {
-     if (gridClone[i] !== undefined) {
-       gridClone.splice(i, 1);
-     }
-    if (gridClone.length === 9) {
-      return true;
-    } else {
-      return false;
+  isBoardEmpty(): boolean {
+    for (let i = 0; i < this.size; i++) {
+      if (this.grid[i] !== undefined) {
+        return false;
+      }
     }
-   }
-
-   return (this.grid.length > 0) ? false : true;
+    return true;
   }
 
   placeMark(mark: string, position: number) {
-   this.grid[(position - 1)] = mark;
+    if (this.isValidMove(position)) {
+      this.grid[(position - 1)] = mark;
+    }
   }
 
   position(boardPosition: number): string {
-    return this.grid[ (boardPosition - 1)];
+    return this.grid[(boardPosition - 1)];
+  }
+
+  private isValidMove(position: number): boolean {
+    return this.isValidRange(position) && this.isPositionEmpty(position);
+  }
+
+  private isPositionEmpty(position: number): boolean {
+    return (this.grid[position - 1] === undefined);
+  }
+
+  private isValidRange(position: number): boolean {
+    return (position >= 1 && position <= 9);
   }
 }
