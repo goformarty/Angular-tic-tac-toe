@@ -3,17 +3,3 @@
   width: 50% !important;
 }
 
-span
-{
-    width:50px;
-    height:50px;
-    border: solid 1px black;
-    text-align:center;
-    font-size:33px;
-    display: inline-block;
-}
-span:hover
-{
-    background-color: #dbdbdb;
-    cursor:pointer;
-}

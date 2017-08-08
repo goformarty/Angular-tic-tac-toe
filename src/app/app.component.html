@@ -8,15 +8,8 @@
       <!-- <h4>Game Board here</h4> -->
       Board here:
       <div>
-        <span *ngFor="let tile of tiles"
-        (click)="onClick(id)"> 
-        {{ playerMarker }} 
-      </span>
-        <!-- <tile (click)="onClick()"></tile>
-        
-        <tile></tile>
-        <tile></tile> -->
-      </div>
+      <app-tile></app-tile>
+        <li *ngFor="let tile of gs.tiles;" (click)="playerClick($event)"></li>
     </div>
 
 
